@@ -1,0 +1,20 @@
+<mat-accordion>
+    <div *ngFor="let performance of performances">
+        <mat-expansion-panel (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+    {{performance.show.name}}
+    </mat-panel-title>
+    <mat-panel-description>
+    {{performance.showTime}}
+</mat-panel-description>
+</mat-expansion-panel-header>
+<p>{{performance.show.description}}</p>
+<mat-tab-group>
+    <mat-tab label="Venue"> Content 1 </mat-tab>
+    <mat-tab label="Seats"> Content 2 </mat-tab>
+  </mat-tab-group>
+</mat-expansion-panel>
+</div>
+</mat-accordion>
