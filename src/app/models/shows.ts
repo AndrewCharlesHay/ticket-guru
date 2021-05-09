@@ -5,5 +5,4 @@ export interface Show {
     name: string;
     description: string;
     venueId: number;
-    venue?: Venue
 }

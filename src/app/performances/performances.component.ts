@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { PerformanceInterface, ShowPerf } from '../models/performance';
-import { Venue } from '../models/venue';
 import { ThemePalette } from '@angular/material/core';
 
 @Component({
@@ -12,6 +11,7 @@ import { ThemePalette } from '@angular/material/core';
 export class PerformancesComponent implements OnInit {
   performances: ShowPerf[] = [];
   panelOpenState = false;
+  selectedIndex = 0;
   color: ThemePalette= 'primary';
 
 
@@ -25,12 +25,9 @@ export class PerformancesComponent implements OnInit {
   }
   getShowPerfs(performances: PerformanceInterface[]){
     performances.forEach(performance => this.dataService.getShow(performance.showId).subscribe(show => {
-      
-      // Get Show's Venue
-      this.dataService.getVenue(show.venueId).subscribe(showVenue => show.venue = showVenue);
-
       // Add show to Performance
       const showPerf: ShowPerf = {
+        id: performance.id,
         showTime: performance.showTime,
         show: show
       }
@@ -38,5 +35,7 @@ export class PerformancesComponent implements OnInit {
     }
     ))
   }
-
+  receiveBuyClick($event: number) {
+    this.selectedIndex = $event;
+  }
 }

@@ -4,6 +4,8 @@ import { PerformanceInterface } from '../models/performance';
 import { Show } from '../models/shows';
 import { Observable } from 'rxjs';
 import { Venue } from '../models/venue';
+import { Level } from '../models/levels';
+import { Customer } from '../models/customers';
 
 
 @Injectable({
@@ -33,5 +35,17 @@ export class DataService {
   getVenue(venueId: number): Observable<Venue> {
     const url = `${this.baseUrl}/venues/${venueId}`
     return this.http.get<Venue>(url);
+  }
+  getSeatsByPerformance(performanceId: number){
+    const url = `${this.baseUrl}/performances/${performanceId}/availability`
+    return this.http.get(url);
+  }
+  getLevel(levelId: number): Observable<Level> {
+    const url = `${this.baseUrl}/levels/${levelId}`;
+    return this.http.get<Level>(url);
+  }
+  postCustomer(customer: Customer): Observable<any> {
+    const url = `${this.baseUrl}/customers`;
+    return this.http.post<any>(url, customer);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Venue } from '../models/venue';
 import { DataService } from '../services/data.service';
 
@@ -8,6 +8,7 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./venue.component.css']
 })
 export class VenueComponent implements OnInit {
+  @Output() buyClickEvent = new EventEmitter<number>();
   @Input() venueId: number;
   venue: Venue;
 
@@ -18,5 +19,8 @@ export class VenueComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.getVenue(this.venueId).subscribe(res => this.venue = res)
   }
-
+  onClick(): void{
+    console.log("click")
+    this.buyClickEvent.emit(1);
+  }
 }

@@ -3,17 +3,25 @@
         <mat-expansion-panel (opened)="panelOpenState = true"
             (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
-    <mat-panel-title>
-    {{performance.show.name}}
+    <mat-panel-title class="title">
+        {{performance.show.name}}
     </mat-panel-title>
-    <mat-panel-description>
-    {{performance.showTime}}
-</mat-panel-description>
+    <mat-panel-description class="description">
+        {{performance.showTime | date:'fullDate'}}
+    </mat-panel-description>
 </mat-expansion-panel-header>
 <p>{{performance.show.description}}</p>
-<mat-tab-group>
-    <mat-tab label="Venue"> Content 1 </mat-tab>
-    <mat-tab label="Seats"> Content 2 </mat-tab>
+<mat-tab-group [selectedIndex]="selectedIndex" mat-stretch-tabs class="stretched-tabs mat-elevation-z4">
+    <mat-tab label="Venue">
+        <app-venue (buyClickEvent)="receiveBuyClick($event)"
+            [venueId]="performance.show.venueId">
+        </app-venue>
+    </mat-tab>
+    <mat-tab label="Seats">
+        <app-seats
+        [performanceId]="performance.id">
+        </app-seats>
+    </mat-tab>
   </mat-tab-group>
 </mat-expansion-panel>
 </div>

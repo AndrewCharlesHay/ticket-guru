@@ -8,7 +8,7 @@ import { DataService } from '../services/data.service';
 })
 export class SeatsComponent implements OnInit {
   @Input() performanceId: number;
-  displayedColumns = ['name', 'price', 'available'];
+  displayedColumns = ['name', 'price', 'available', ''];
 
   seats: any = {}
   constructor(
