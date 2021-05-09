@@ -1,0 +1,8 @@
+.venue-card {
+    max-width: 400px;
+  }
+  
+.venue-header-image {
+    background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Newport_Music_Hall_logo.jpg/220px-Newport_Music_Hall_logo.jpg');
+    background-size: cover;
+}

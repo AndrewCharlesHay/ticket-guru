@@ -1,0 +1,21 @@
+<div *ngIf="venue">
+<mat-card class="venue-card">
+    <mat-card-header>
+      <div mat-card-avatr class="venue-header-image"></div>
+      <mat-card-title >{{venue.name}}</mat-card-title>
+      <mat-card-subtitle>{{venue.address}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://images.discotech.me/venue/None/1b0a051a-f262-4d0e-9850-1a3ba491cf88.jpg?auto=format%2Ccompress" alt="Photo of Concert Venue">
+    <mat-card-content>
+      <p>
+        {{venue.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Buy Tickets</button>
+      <a href={{venue.url}}>
+    <button mat-button>{{venue.name}} <mat-icon>launch</mat-icon></button>
+  </a>
+    </mat-card-actions>
+</mat-card>
+</div>
