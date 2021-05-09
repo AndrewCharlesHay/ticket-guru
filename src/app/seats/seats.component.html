@@ -1,0 +1,32 @@
+<div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="seats.levels">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Section </th>
+        <td mat-cell *matCellDef="let level"> {{level.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let level"> ${{level.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="available">
+        <th mat-header-cell *matHeaderCellDef> Seats available </th>
+        <td mat-cell *matCellDef="let level"> {{level.seatsAvailable}} </td>
+      
+    </ng-container>
+      <ng-container matColumnDef="numRows">
+        <th mat-header-cell *matHeaderCellDef> Number of Rows </th>
+        <td mat-cell *matCellDef="let level"> {{level.numRows}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="seatsPerRow">
+        <th mat-header-cell *matHeaderCellDef> Seats per Row </th>
+        <td mat-cell *matCellDef="let level"> {{level.seatsPerRow}} </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
