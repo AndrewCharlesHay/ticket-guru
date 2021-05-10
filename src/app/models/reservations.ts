@@ -2,24 +2,24 @@ import { Customer } from "./customers";
 import { Seats } from "./seats";
 
 export interface Reservation {
-  performanceId: number,
+  performanceId: string,
   customer: {
-    id: number
+    id: string
   },
   seatRequests: SeatRequest[]
 }
 export interface SeatRequest {
     level: {
-        id: number
+        id: string
     },
-    numSeats: number
+    numSeats: string
 }
 export interface confirmedReservation {
     id: number,
     reservationName: string,
     expirationDate: Date,
     reservationConfirmed: boolean,
-    customerId: 0,
+    customerId: string,
     customer: Customer,
     seats: Seats[]
 }

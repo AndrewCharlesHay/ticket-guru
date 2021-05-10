@@ -49,8 +49,8 @@ export class DataService {
     const url = `${this.baseUrl}/customers`;
     return this.http.post<any>(url, customer);
   }
-  postReservation(reservation: Reservation): Observable<confirmedReservation>{
+  postReservation(reservation: Reservation): Observable<any>{
     const url = `${this.baseUrl}/reservations`;
-    return this.http.post<confirmedReservation>(url, reservation);
+    return this.http.post<any>(url, reservation);
   }
 }

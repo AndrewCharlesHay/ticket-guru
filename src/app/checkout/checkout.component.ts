@@ -60,19 +60,25 @@ export class CheckoutComponent implements OnInit {
       email: value.email,
       address: value.address
     };
-    this.dataService.postCustomer(this.customer).subscribe(customer => this.customer.id = customer.id);
+    this.dataService.postCustomer(this.customer).subscribe(customer => {
+      this.customer.id = customer.id
+      this.setReservation(customer.id.toString(), value.seats)
+    });
+    
+  }
+  setReservation(customerId: string, seats: string){
     const seatRequest: SeatRequest = {
       level: {
-        id: this.levelId
+        id: this.levelId.toString()
       },
-      numSeats: value.seats
+      numSeats: seats
     }
     const reservation: Reservation = {
-      performanceId: this.performanceId,
-      seatRequests: [seatRequest],
+      performanceId: this.performanceId.toString(),
       customer: {
-        id: 0
-      }
+        id: customerId
+      },
+      seatRequests: [seatRequest]
     }
     this.dataService.postReservation(reservation).subscribe(confirmedReservation => this.reservationId = confirmedReservation.id)
   }

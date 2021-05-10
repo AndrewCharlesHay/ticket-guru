@@ -1,5 +1,9 @@
 <div class="container">
 <mat-card class="customer-card">
+  <div *ngIf="customer">
+    <h2 *ngIf="customer.id">You have successfully registered as a customer! Your ID is {{customer.id}}</h2>
+  </div>
+  <h2 *ngIf="reservationId">You have successfully reserved your tickets! Your reservation number is {{reservationId}}</h2>
       <mat-icon class="header-image">payment</mat-icon>
     <mat-card-header>
       <mat-card-title>Checkout</mat-card-title>
@@ -72,8 +76,4 @@
           </form>
     </mat-card-content>
 </mat-card>
-<div *ngIf="customer">
-  <h2 *ngIf="customer.id">You have successfully resgistered as a customer! Your ID is {{customer.id}}</h2>
-</div>
-<h2 *ngIf="reservationId">You have successfully reserved your tickets! Your reservation number is {{reservationId}}</h2>
 </div>
