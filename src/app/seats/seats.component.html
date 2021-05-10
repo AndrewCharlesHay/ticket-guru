@@ -4,7 +4,6 @@
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Section </th>
         <td mat-cell *matCellDef="let level"> {{level.name}}
-          <a fxFlexFill [routerLink]="['/checkout', level.id]" class="mat-row-link"></a>
         </td>
       </ng-container>
 
@@ -18,19 +17,18 @@
         <td mat-cell *matCellDef="let level"> {{level.seatsAvailable}} </td>  
       </ng-container>
 
-      <ng-container matColumnDef="available">
-        <th mat-header-cell *matHeaderCellDef> '' </th>
-        <td mat-cell *matCellDef="let level"> {{level.seatsAvailable}} </td>  
-      </ng-container>
-
       <ng-container matColumnDef="numRows">
         <th mat-header-cell *matHeaderCellDef> Number of Rows </th>
         <td mat-cell *matCellDef="let level"> {{level.numRows}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="seatsPerRow">
-        <th mat-header-cell *matHeaderCellDef> Seats per Row </th>
-        <td mat-cell *matCellDef="let level"> {{level.seatsPerRow}} </td>
+      <ng-container matColumnDef="reserve">
+        <th mat-header-cell *matHeaderCellDef> '' </th>
+        <td mat-cell *matCellDef="let level">
+          <button routerLink="/checkout/{{level.id}}/{{performanceId}}" mat-raised-button color="primary">
+            Reserve
+          </button>
+        </td>  
       </ng-container>
   
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

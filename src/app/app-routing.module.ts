@@ -5,7 +5,7 @@ import { PerformancesComponent } from './performances/performances.component';
 
 const routes: Routes = [
   { path:'', redirectTo:'performances', pathMatch: 'full'},
-  { path: 'checkout/:levelId', component: CheckoutComponent },
+  { path: 'checkout/:levelId/:performanceId', component: CheckoutComponent },
   { path: 'performances', component: PerformancesComponent}
 ];
 

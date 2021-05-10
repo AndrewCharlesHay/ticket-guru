@@ -5,3 +5,10 @@
 .description{
     text-align: left;
 }
+.accordion{
+    text-align: -webkit-center;
+}
+.expansion{
+    max-width: 900px;
+    align-items: center;
+}

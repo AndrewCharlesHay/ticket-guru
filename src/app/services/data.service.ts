@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Venue } from '../models/venue';
 import { Level } from '../models/levels';
 import { Customer } from '../models/customers';
+import { confirmedReservation, Reservation } from '../models/reservations';
 
 
 @Injectable({
@@ -47,5 +48,9 @@ export class DataService {
   postCustomer(customer: Customer): Observable<any> {
     const url = `${this.baseUrl}/customers`;
     return this.http.post<any>(url, customer);
+  }
+  postReservation(reservation: Reservation): Observable<confirmedReservation>{
+    const url = `${this.baseUrl}/reservations`;
+    return this.http.post<confirmedReservation>(url, reservation);
   }
 }

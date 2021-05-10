@@ -35,6 +35,11 @@
                   Email is <strong>required</strong>
                 </mat-error>
               </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Seats Requested</mat-label>
+                <input matInput
+                [formControl]="seatsControl">
+              </mat-form-field>
             <p>
               <mat-form-field class="example-full-width">
                 <mat-label>Address</mat-label>
@@ -46,25 +51,29 @@
               </mat-form-field>
             </p>
           
-            <table class="example-full-width" cellspacing="0"><tr>
-              <td><mat-form-field class="example-full-width">
+            <table class="example-full-width" cellspacing="0">
+              <mat-form-field class="example-full-width">
                 <mat-label>City</mat-label>
                 <input matInput placeholder="Ex. San Francisco">
-              </mat-form-field></td>
-              <td><mat-form-field class="example-full-width">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
                 <mat-label>State</mat-label>
                 <input matInput placeholder="Ex. California">
-              </mat-form-field></td>
-              <td><mat-form-field class="example-full-width">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
                 <mat-label>Postal Code</mat-label>
                 <input matInput #postalCode maxlength="5" placeholder="Ex. 94105">
                 <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-              </mat-form-field></td>
-            </tr></table>
+              </mat-form-field>
+            </table>
             <mat-card-actions>
                 <button mat-raised-button type="submit" color="primary">Reserve</button>
             </mat-card-actions>
           </form>
     </mat-card-content>
 </mat-card>
+<div *ngIf="customer">
+  <h2 *ngIf="customer.id">You have successfully resgistered as a customer! Your ID is {{customer.id}}</h2>
+</div>
+<h2 *ngIf="reservationId">You have successfully reserved your tickets! Your reservation number is {{reservationId}}</h2>
 </div>

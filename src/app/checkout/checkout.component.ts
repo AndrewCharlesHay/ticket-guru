@@ -4,6 +4,7 @@ import { DataService } from '../services/data.service'
 import { ActivatedRoute } from '@angular/router';
 import { Level } from '../models/levels';
 import { Customer } from '../models/customers';
+import { Reservation, SeatRequest } from '../models/reservations';
 
 @Component({
   selector: 'app-checkout',
@@ -11,8 +12,17 @@ import { Customer } from '../models/customers';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  level: Level;
+  levelId: number;
   customer: Customer;
-  emailControl = new FormControl('', [Validators.required, Validators.email]);
+  performanceId: number;
+  reservationId: number;
+  emailControl = new FormControl('', [
+    Validators.required, Validators.email
+  ]);
+  seatsControl = new FormControl('', [
+    Validators.required,
+  ])
   firstNameControl = new FormControl('', [
     Validators.required,
   ]);
@@ -23,12 +33,12 @@ export class CheckoutComponent implements OnInit {
     Validators.required,
   ]);
   myForm = new FormGroup({
-    email: this.emailControl,
     firstName: this.firstNameControl,
     lastName: this.lastNameControl,
-    address: this.addressControl
+    address: this.addressControl,
+    email: this.emailControl,
+    seats: this.seatsControl
   });
-  level: Level;
 
   constructor(
     private _route: ActivatedRoute,
@@ -37,8 +47,9 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this._route.params.subscribe(params => {
-      const levelId = JSON.parse(params.levelId);
-      this.dataService.getLevel(levelId).subscribe(level => this.level = level)
+      this.levelId = JSON.parse(params.levelId);
+      this.performanceId = JSON.parse(params.performanceId);
+      this.dataService.getLevel(this.levelId).subscribe(level => this.level = level)
     });
   }
   Submit(){
@@ -46,9 +57,23 @@ export class CheckoutComponent implements OnInit {
     this.customer = {
       firstName: value.firstName,
       lastName: value.lastName,
-      address: value.address,
-      email: value.email
+      email: value.email,
+      address: value.address
     };
     this.dataService.postCustomer(this.customer).subscribe(customer => this.customer.id = customer.id);
+    const seatRequest: SeatRequest = {
+      level: {
+        id: this.levelId
+      },
+      numSeats: value.seats
+    }
+    const reservation: Reservation = {
+      performanceId: this.performanceId,
+      seatRequests: [seatRequest],
+      customer: {
+        id: 0
+      }
+    }
+    this.dataService.postReservation(reservation).subscribe(confirmedReservation => this.reservationId = confirmedReservation.id)
   }
 }
